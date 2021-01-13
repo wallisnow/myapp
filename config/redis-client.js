@@ -1,6 +1,15 @@
 const redisClient = require('redis');
 const {promisify} = require('util');
-const client = redisClient.createClient(process.env.REDIS_URL);
+const conf = require("./conf");
+const client = redisClient.createClient(conf.redis);
+
+client.on('connect', function () {
+    console.log("Redis Connected")
+});
+
+client.on('error', function (err) {
+    console.log(err)
+});
 
 module.exports = {
     ...client,

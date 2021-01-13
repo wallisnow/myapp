@@ -118,5 +118,7 @@ dist
 .pnp.*
 
 #IDEA
-
 .idea
+
+#Redis data
+Docker/datadir/

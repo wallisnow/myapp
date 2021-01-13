@@ -1,5 +1,5 @@
 // Import the dependencies for testing
-const { expect } = require('chai');
+const {expect} = require('chai');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var app = require('../app');
@@ -156,6 +156,42 @@ describe("Users API tests", () => {
 
                     expect(res.body).to.have.property('data');
                     expect(res.body.data.affectedRows).to.equal(1);
+                    done();
+                });
+        })
+    });
+});
+
+
+describe("Redis API tests", () => {
+
+    let testRedisKey = "testKey";
+    let testRedisValue = "testValue";
+
+    describe("REDIS ADDKEY /redis/storage", () => {
+        it("should add a redis key", (done) => {
+            chai.request(app)
+                .post('/redis/storage/' + testRedisKey)
+                .send({
+                    "data": testRedisValue
+                })
+                .end((err, res) => {
+                    console.log(res.text);
+                    res.should.have.status(200);
+                    res.text.should.equals('Success');
+                    done();
+                });
+        })
+    });
+
+    describe("REDIS GETKEY /redis/storage/", () => {
+        it("should get a redis key", (done) => {
+            chai.request(app)
+                .get('/redis/storage/' + testRedisKey)
+                .end((err, res) => {
+                    console.log(res.text);
+                    res.should.have.status(200);
+                    res.text.should.contains(testRedisValue);
                     done();
                 });
         })
