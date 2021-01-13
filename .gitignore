@@ -121,4 +121,5 @@ dist
 .idea
 
 #Redis data
-Docker/datadir/
+Docker/datadir/appendonly.aof
+Docker/datadir/dump.rdb
