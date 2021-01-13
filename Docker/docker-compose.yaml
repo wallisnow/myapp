@@ -1,0 +1,13 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    container_name: docker_redis
+    volumes:
+      - ./datadir:/data
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs:/logs
+    command:
+      /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf"
+    ports:
+      - 6379:6379
