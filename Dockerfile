@@ -1,4 +1,4 @@
-FROM armdocker.rnd.ericsson.se/proj_kds/erikube/myapp:0.2.1
+FROM node:12
 # Create app directory
 WORKDIR /usr/src/app
 # Install app dependencies
