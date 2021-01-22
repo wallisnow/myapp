@@ -13,7 +13,7 @@ services:
         ports:
             - 3306:3306
         volumes:
-            - ../scripts/sql:/docker-entrypoint-initdb.d/
+            - ../../scripts/sql:/docker-entrypoint-initdb.d/
 
     redis-cluster-6380:
         image: redis
