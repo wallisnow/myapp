@@ -6,8 +6,22 @@ const conf = {
         database: process.env.DATABASE_DB_NAME || "testdb",
         port: process.env.DATABASE_PORT || 3306,
     },
-    redis: {
-        host: process.env.REDIS_HOST || "127.0.0.1",
+    redisCluster: [
+        {
+            host: process.env.REDIS_NODE1_HOST,
+            port: process.env.REDIS_NODE1_PORT
+        },
+        {
+            host: process.env.REDIS_NODE2_HOST,
+            port: process.env.REDIS_NODE2_PORT
+        },
+        {
+            host: process.env.REDIS_NODE3_HOST,
+            port: process.env.REDIS_NODE3_PORT
+        }
+    ],
+    redisSingleton: {
+        host: process.env.REDIS_HOST || "localhost",
         port: process.env.REDIS_PORT || 6379,
     }
 };

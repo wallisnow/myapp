@@ -1,0 +1,94 @@
+version: "3"
+services:
+    mysql:
+        image: mysql:5.6
+        container_name: docker_mysql
+        network_mode: host
+        restart: always
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: 'testdb'
+            # Password for root access
+            MYSQL_ROOT_PASSWORD: 'root123'
+        ports:
+            - 3306:3306
+        volumes:
+            - ../scripts/sql:/docker-entrypoint-initdb.d/
+
+    redis-cluster-6380:
+        image: redis
+        container_name: node-80
+        network_mode: "host"
+        restart: always
+        ports:
+            - "6380:6380"
+        volumes:
+            - ./conf/redis-6380.conf:/usr/local/etc/redis/redis.conf
+            - ./log:/var/log/redis
+            - ./data:/data/redis
+        command: sh -c "redis-server /usr/local/etc/redis/redis.conf"
+
+    redis-cluster-6381:
+        image: redis
+        container_name: node-81
+        network_mode: "host"
+        restart: always
+        ports:
+            - "6381:6381"
+        volumes:
+            - ./conf/redis-6381.conf:/usr/local/etc/redis/redis.conf
+            - ./log:/var/log/redis
+            - ./data:/data/redis
+        command: sh -c "redis-server /usr/local/etc/redis/redis.conf"
+
+    redis-cluster-6383:
+        image: redis
+        container_name: node-83
+        network_mode: "host"
+        restart: always
+        ports:
+            - "6383:6383"
+        volumes:
+            - ./conf/redis-6383.conf:/usr/local/etc/redis/redis.conf
+            - ./log:/var/log/redis
+            - ./data:/data/redis
+        command: sh -c "redis-server /usr/local/etc/redis/redis.conf"
+
+    redis-cluster-6384:
+        image: redis
+        container_name: node-84
+        network_mode: "host"
+        restart: always
+        ports:
+            - "6384:6384"
+        volumes:
+            - ./conf/redis-6384.conf:/usr/local/etc/redis/redis.conf
+            - ./log:/var/log/redis
+            - ./data:/data/redis
+        command: sh -c "redis-server /usr/local/etc/redis/redis.conf"
+
+    redis-cluster-6385:
+        image: redis
+        container_name: node-85
+        network_mode: "host"
+        restart: always
+        ports:
+            - "6385:6385"
+        volumes:
+            - ./conf/redis-6385.conf:/usr/local/etc/redis/redis.conf
+            - ./log:/var/log/redis
+            - ./data:/data/redis
+        command: sh -c "redis-server /usr/local/etc/redis/redis.conf"
+
+    redis-cluster-6386:
+        image: redis
+        container_name: node-86
+        network_mode: "host"
+        restart: always
+        ports:
+            - "6386:6386"
+        volumes:
+            - ./conf/redis-6386.conf:/usr/local/etc/redis/redis.conf
+            - ./log:/var/log/redis
+            - ./data:/data/redis
+        command: sh -c "redis-server /usr/local/etc/redis/redis.conf"

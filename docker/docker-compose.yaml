@@ -38,6 +38,7 @@ services:
       - redis
     build: ./
     environment:
+      DEV_ENVIRONMENT: 'dev'
       DATABASE_HOST: localhost
       DATABASE_USER_NAME: 'root'
       DATABASE_USER_PASSWORD: 'root123'
