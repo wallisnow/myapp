@@ -29,7 +29,8 @@ router.get('/storage/:key', async (req, res) => {
 });
 
 router.get('/greeting', (req, res) => {
+    console.log("user " + req.session.username + " using the system now.")
     return res.send('Hello redis storage');
 });
 
-module.exports = router;
+module.exports = {redis, router}
