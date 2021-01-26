@@ -4,6 +4,7 @@ const session = require('express-session');
 const redisStore = require('connect-redis')(session);
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const fs = require('fs');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
@@ -13,6 +14,9 @@ const redisClient = require('./routes/redis');
 const app = express();
 
 const PORT = process.env.APP_PORT || 8082;
+
+const accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
+app.use(logger('combined', {stream: accessLogStream}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,12 +41,18 @@ app.use(session({
 }))
 
 app.use(function (req, res, next) {
-    if (req.path.indexOf('/login') < 0 && !req.session.username) {
-        console.log("direct to login ...")
-        return res.send('only /login is allowed');
-    } else {
-        console.log(" user login ok ...")
+    if (process.env.SECURE_MODE === 'false') {
+        console.log(" security mode is disable ...")
+        req.session.username = "tester"
         next();
+    } else {
+        if (req.path.indexOf('/login') < 0 && !req.session.username) {
+            console.log("direct to login ...")
+            return res.send('only /login is allowed');
+        } else {
+            console.log(" user login ok ...")
+            next();
+        }
     }
 });
 

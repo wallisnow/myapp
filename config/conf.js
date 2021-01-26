@@ -9,15 +9,15 @@ const conf = {
     redisCluster: [
         {
             host: process.env.REDIS_NODE1_HOST,
-            port: process.env.REDIS_NODE1_PORT
+            port: process.env.REDIS_NODE1_PORT || 6379,
         },
         {
             host: process.env.REDIS_NODE2_HOST,
-            port: process.env.REDIS_NODE2_PORT
+            port: process.env.REDIS_NODE2_PORT || 6379,
         },
         {
             host: process.env.REDIS_NODE3_HOST,
-            port: process.env.REDIS_NODE3_PORT
+            port: process.env.REDIS_NODE3_PORT || 6379,
         }
     ],
     redisSingleton: {
