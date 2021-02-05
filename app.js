@@ -8,7 +8,6 @@ const fs = require('fs');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const redisClient = require('./routes/redis');
 
 const app = express();
@@ -57,7 +56,6 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/redis', redisClient.router);
 
 // catch 404 and forward to error handler
