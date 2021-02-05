@@ -13,7 +13,6 @@ you can check ```config/conf.js``` for the env keys.
 
 ## Docker compose
 There is a /docker dir in the project, you can just start the docker by the compose file, but different file for different propose
-- ```docker-compose.yaml``` include a myapp itself, you need to build an image then start it 
 - ```docker-compose-db.yaml``` this one has a mysql and a singleton redis, you can just use this for testing
 - ```cluster/docker-compose-db.yaml``` this one is using redis cluster, you can check ```config/conf.js``` for the configuration need
 
