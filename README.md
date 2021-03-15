@@ -1,6 +1,6 @@
 # Myapp
 An Express Node App 
-DB: mysql + redis
+DB: redis
 
 # Before your start
 ## Environment setting
