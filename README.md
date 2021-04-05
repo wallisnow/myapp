@@ -8,7 +8,7 @@ DB: redis
 Allow all requests without login
 ```SECURE_MODE=false```
 ### Use redis Singleton mode
-```DEV_ENVIRONMENT=dev``` In this mode you just need to specify a *REDIS_HOST* and *REDIS_PORT*. and if you want use cluster mode, you need to config at least 3 hosts and ports of your cluster
+```DEV_ENVIRONMENT=dev``` In this mode you just need to specify a *REDIS_HOST* and *REDIS_PORT*. If you want to use cluster mode, you need to config at least 3 hosts and ports of your cluster
 you can check ```config/conf.js``` for the env keys.
 
 ## Docker compose
