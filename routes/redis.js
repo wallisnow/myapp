@@ -15,17 +15,19 @@ initData().then((value) => {
 router.post('/storage/:key', async (req, res) => {
     const {key} = req.params;
     const value = req.body.data;
-    await redis.set(key, JSON.stringify(value))
-        .then(console.log)
-        .catch(console.error);
+    await redis.set(key, value, function (err) {
+        console.log(err);
+    });
     return res.send('Success');
 });
 
 router.get('/storage/:key', async (req, res) => {
     const {key} = req.params;
-    const rawData = await redis.get(key)
-        .catch(console.error);
-    return res.json(JSON.parse(rawData));
+    const rawData = await redis.get(key, function (err){
+        console.log(err);
+    });
+    //return res.json(JSON.parse(rawData));
+    return res.json(rawData);
 });
 
 router.get('/greeting', (req, res) => {
