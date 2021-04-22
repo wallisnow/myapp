@@ -26,7 +26,6 @@ router.get('/storage/:key', async (req, res) => {
     const rawData = await redis.get(key, function (err){
         console.log(err);
     });
-    //return res.json(JSON.parse(rawData));
     return res.json(rawData);
 });
 
