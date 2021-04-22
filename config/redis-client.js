@@ -1,14 +1,14 @@
 const Redis = require('ioredis');
-const conf = require("./conf");
+const redisNetworkConf = require("./conf");
 
 let client;
 
 if (process.env.DEV_ENVIRONMENT === 'dev') {
     console.log("Using Singleton Type Redis...")
-    client = new Redis(conf.redisSingleton);
+    client = new Redis(redisNetworkConf);
 } else {
     console.log("Using Cluster Type Redis...")
-    client = new Redis.Cluster(conf.redisCluster);
+    client = new Redis.Cluster(redisNetworkConf);
 }
 
 client.on('connect', function () {
@@ -18,7 +18,5 @@ client.on('connect', function () {
 client.on('error', function (err) {
     console.log(err)
 });
-
-
 
 module.exports = client;
